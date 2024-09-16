@@ -1,0 +1,80 @@
+.login-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(-45deg, #1e1e1e, #2a2a2a);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    
+    .login-page-title {
+        color: #39FF14;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+    }
+
+    .login-page-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgba(30, 30, 30, 0.8);
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        
+        input {
+            width: 300px;
+            height: 40px;
+            margin-bottom: 1.5rem;
+            padding: 0 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #2c2c2c;
+            color: #ffffff;
+            font-size: 1rem;
+            
+            &::placeholder {
+                color: #888888;
+            }
+            
+            &:focus {
+                outline: none;
+                box-shadow: 0 0 0 2px #39FF14;
+            }
+        }
+        
+        button {
+            width: 300px;
+            height: 40px;
+            border: none;
+            border-radius: 5px;
+            background-color: #39FF14;
+            color: #1e1e1e;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            
+            &:hover {
+                background-color: #2ecc12;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(57, 255, 20, 0.3);
+            }
+        }
+    }
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

@@ -1,0 +1,132 @@
+.quote-quest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(-45deg, #1e1e1e, #2a2a2a);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #ffffff;
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+  }
+
+  .instructions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    h2 {
+      height: 10px;
+    }
+  }
+
+  .quote-display {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    text-align: center;
+    margin-bottom: 30px;
+    max-width: 800px;
+
+    span {
+      transition: all 0.3s ease;
+
+      &.typed {
+        color: #39ff14;
+      }
+
+      &.current {
+        background-color: rgba(57, 255, 20, 0.3);
+        border-radius: 3px;
+      }
+
+      &.error {
+        animation: flashRed 0.3s ease;
+      }
+    }
+    @keyframes flashRed {
+      0%,
+      100% {
+        background-color: rgba(57, 255, 20, 0.3);
+      }
+      50% {
+        background-color: rgba(255, 0, 0, 0.3);
+      }
+    }
+  }
+
+  button {
+    background-color: #39ff14;
+    color: #1e1e1e;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &.go-back {
+      margin-top: 20px;
+      &.top-right {
+        position: absolute;
+        top: 50px;
+        right: 50px;
+        margin-top: 0;
+      }
+    }
+
+    &:hover {
+      background-color: darken(#39ff14, 10%);
+      transform: scale(1.05);
+    }
+  }
+
+  .timer {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  input {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    font-size: 1.2rem;
+    background-color: rgba(30, 30, 30, 0.8);
+    border: 2px solid #39ff14;
+    border-radius: 5px;
+    color: #ffffff;
+    margin-bottom: 20px;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+    }
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  .result {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #39ff14;
+    margin-top: 20px;
+  }
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

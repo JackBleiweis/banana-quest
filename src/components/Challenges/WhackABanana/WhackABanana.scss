@@ -1,0 +1,203 @@
+.whack-a-banana {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #1e1e1e, #2a2a2a);
+  color: #ffffff;
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+  }
+
+  .game-info {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: #39ff14;
+  }
+
+  .banana-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); // Assuming a 3x3 grid
+    gap: 10px;
+    margin: 0 auto;
+    background-color: rgba(
+      255,
+      255,
+      255,
+      0.1
+    ); // Add a slight background to make the grid visible
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .banana {
+    background-color: #4a4a4a;
+    border: 2px solid #39ff14;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 70px;
+    height: 70px;
+    position: relative;
+
+    &:hover {
+      transform: scale(1.05);
+      background-color: #5a5a5a;
+    }
+
+    &.active {
+      background-color: #ffd700;
+      border-color: #ffd700;
+    }
+
+    &::after {
+      content: "🍌";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    &.active::after {
+      opacity: 1;
+    }
+  }
+
+  .game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+
+    h3 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #39ff14;
+      color: #1e1e1e;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: darken(#39ff14, 10%);
+      }
+    }
+  }
+
+  .go-back {
+    margin-top: 20px;
+    background-color: #39ff14;
+    color: #1e1e1e;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: darken(#39ff14, 10%);
+    }
+  }
+
+  .start-button {
+    background-color: #39ff14;
+    color: #1e1e1e;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+
+    &:hover {
+      background-color: darken(#39ff14, 10%);
+      transform: scale(1.05);
+    }
+  }
+
+  .item-grid {
+    display: grid;
+    gap: 10px;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .item {
+    background-color: #4a4a4a;
+    border: 2px solid #39ff14;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 70px;
+    height: 70px;
+    position: relative;
+
+    &:hover {
+      transform: scale(1.05);
+      background-color: #5a5a5a;
+    }
+
+    &.banana {
+      background-color: #ffd700;
+      border-color: #ffd700;
+    }
+
+    &.coconut {
+      background-color: #8b4513;
+      border-color: #8b4513;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 1; // Ensure the content is always visible
+      transition: none; // Remove the transition
+    }
+
+    &.banana::after {
+      content: "🍌";
+    }
+
+    &.coconut::after {
+      content: "🥥";
+    }
+  }
+}

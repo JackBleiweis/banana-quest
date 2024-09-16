@@ -1,0 +1,149 @@
+.banana-catcher {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #1e1e1e, #2a2a2a);
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+
+  h2 {
+    font-size: 2.5rem;
+    color: #39ff14;
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+    margin-bottom: 20px;
+  }
+
+  .start-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .game-area {
+    width: 100%;
+    max-width: 600px;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border: 2px solid #39ff14;
+    cursor: none;
+  }
+
+  .game-info {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #39ff14;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  .falling-items {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .falling-item {
+    position: absolute;
+    top: -30px;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: fall 3s linear;
+
+    &.banana {
+      background-image: url("../../../assets/banana.png");
+    }
+
+    &.coconut {
+      background-image: url("../../../assets/coconut.png");
+    }
+  }
+
+  .basket {
+    position: absolute;
+    width: 60px;
+    height: 40px;
+    background-image: url("../../../assets/basket.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .start-button,
+  .go-back {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #39ff14;
+    color: #1e1e1e;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: darken(#39ff14, 10%);
+      transform: scale(1.05);
+    }
+  }
+
+  .game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #39ff14;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #39ff14;
+
+    h3 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #39ff14;
+      color: #1e1e1e;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: darken(#39ff14, 10%);
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  @keyframes fall {
+    from {
+      top: -30px;
+    }
+    to {
+      top: 100%;
+    }
+  }
+}
