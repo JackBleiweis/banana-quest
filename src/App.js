@@ -11,6 +11,9 @@ import BananaSplitBuilder from "./components/Challenges/BananaSplitBuilder/Banan
 import BananaBalance from "./components/Challenges/BananaBalance/BananaBalance";
 import BananaSpellingBee from "./components/Challenges/BananaSpellingBee/BananaSpellingBee";
 import BananaRhythm from "./components/Challenges/BananaRhythm/BananaRhythm";
+import SecretGameRoom from "./components/SecretGameRoom/SecretGameRoom";
+import MonkeySeeMonkeyDo from "./components/Challenges/MonkeySeeMonkeyDo/MonkeySeeMonkeyDo";
+import MonkeyMaze from "./components/Challenges/MonkeyMaze/MonkeyMaze";
 
 function App() {
   return (
@@ -39,6 +42,12 @@ function App() {
           element={<BananaSpellingBee />}
         />
         <Route path="/challenge/banana-rhythm" element={<BananaRhythm />} />
+        <Route
+          path="/challenge/monkey-see-monkey-do"
+          element={<MonkeySeeMonkeyDo />}
+        />
+        <Route path="/challenge/monkey-maze" element={<MonkeyMaze />} />
+        <Route path="/secret-game-room" element={<SecretGameRoom />} />
       </Routes>
     </Router>
   );

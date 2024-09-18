@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import BananaCounter from "../BananaCounter/BananaCounter";
 import DateAndQuote from "../DateAndQuote/DateAndQuote";
@@ -8,6 +8,8 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [completedChallenges, setCompletedChallenges] = useState([]);
   const [dailyChallenges, setDailyChallenges] = useState([]);
+  const [showSecretButton, setShowSecretButton] = useState(false);
+  const secretButtonRef = useRef(null);
 
   useEffect(() => {
     const today = new Date().toDateString();
@@ -155,8 +157,31 @@ const Dashboard = () => {
     },
   ];
 
+  const handleBananaClick = () => {
+    setShowSecretButton(true);
+    setTimeout(() => {
+      if (secretButtonRef.current) {
+        secretButtonRef.current.focus();
+      }
+    }, 0);
+  };
+
+  const handleSecretButtonClick = () => {
+    const goToSecretRoom = window.confirm(
+      "Do you want to go to the secret game room?"
+    );
+    if (goToSecretRoom) {
+      navigate("/secret-game-room");
+    }
+    setShowSecretButton(false);
+  };
+
   const handleChallengeSelect = (challengeId) => {
-    navigate(`/challenge/${challengeId}`);
+    if (challengeId === "secret-game-room") {
+      navigate("/secret-game-room");
+    } else {
+      navigate(`/challenge/${challengeId}`);
+    }
   };
 
   const resetChallenges = () => {
@@ -175,7 +200,18 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <BananaCounter completedChallenges={completedChallenges} />
+      <div onClick={handleBananaClick}>
+        <BananaCounter completedChallenges={completedChallenges} />
+      </div>
+      {showSecretButton && (
+        <button
+          ref={secretButtonRef}
+          className="secret-button"
+          onClick={handleSecretButtonClick}
+        >
+          🍌
+        </button>
+      )}
       <DateAndQuote />
       <h1>Today's Banana Challenges</h1>
       <p>Completed: {completedChallenges.length}/5</p>
