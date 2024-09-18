@@ -115,7 +115,7 @@ const WordWhiz = () => {
   };
 
   const handleGoBack = () => {
-    navigate("/dashboard");
+    navigate("/");
   };
 
   const handleReset = () => {

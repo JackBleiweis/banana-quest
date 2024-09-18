@@ -79,7 +79,7 @@ const QuoteQuest = () => {
   };
 
   const handleGoBack = () => {
-    navigate("/dashboard");
+    navigate("/");
   };
 
   const renderQuote = () => {

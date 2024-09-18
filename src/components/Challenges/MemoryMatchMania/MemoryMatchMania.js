@@ -51,7 +51,7 @@ const MemoryMatchMania = () => {
   };
 
   const handleGoBack = () => {
-    navigate("/dashboard");
+    navigate("/");
   };
 
   const handleCardClick = (clickedCard) => {

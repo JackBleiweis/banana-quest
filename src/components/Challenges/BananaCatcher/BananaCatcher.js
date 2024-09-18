@@ -160,7 +160,7 @@ const BananaCatcher = () => {
   }, [gameStarted, gameOver, checkCollision]);
 
   const handleGoBack = () => {
-    navigate("/dashboard");
+    navigate("/");
   };
 
   return (
