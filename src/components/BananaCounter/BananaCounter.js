@@ -6,10 +6,10 @@ const BananaCounter = ({ completedChallenges }) => {
     <span
       key={id}
       className={
-        completedChallenges.includes(id) ? "banana completed" : "banana"
+        completedChallenges.length >= id ? "banana completed" : "banana"
       }
     >
-      {completedChallenges.includes(id) ? "🍌" : "🍌"}
+      🍌
     </span>
   ));
 

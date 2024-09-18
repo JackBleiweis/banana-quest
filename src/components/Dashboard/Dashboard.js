@@ -7,20 +7,46 @@ import "./DashboardStyles.scss";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [completedChallenges, setCompletedChallenges] = useState([]);
-  console.log(completedChallenges);
+  const [dailyChallenges, setDailyChallenges] = useState([]);
+
   useEffect(() => {
-    const completedChallenges = [];
-    const challengeIds = [1, 2, 3, 4, 5]; // Assuming these are the IDs of all challenges
+    const today = new Date().toDateString();
+    const storedDate = localStorage.getItem("lastChallengeDate");
+    const storedChallenges = JSON.parse(
+      localStorage.getItem("dailyChallenges")
+    );
 
-    challengeIds.forEach((id) => {
-      const challengeKey = getChallengeKey(id);
-      if (localStorage.getItem(challengeKey) === "true") {
-        completedChallenges.push(id);
-      }
-    });
+    if (storedDate !== today || !storedChallenges) {
+      const newDailyChallenges = getRandomChallenges(5);
+      setDailyChallenges(newDailyChallenges);
+      localStorage.setItem("lastChallengeDate", today);
+      localStorage.setItem(
+        "dailyChallenges",
+        JSON.stringify(newDailyChallenges)
+      );
+    } else {
+      setDailyChallenges(storedChallenges);
+    }
 
-    setCompletedChallenges(completedChallenges);
-  }, []);
+    // Move this outside the if-else block to always update completed challenges
+    const completed = storedChallenges.filter(
+      (id) => localStorage.getItem(getChallengeKey(id)) === "true"
+    );
+    setCompletedChallenges(completed);
+  }, []); // Empty dependency array to run only on mount
+
+  // Add a new useEffect to update completed challenges
+  useEffect(() => {
+    const completed = dailyChallenges.filter(
+      (id) => localStorage.getItem(getChallengeKey(id)) === "true"
+    );
+    setCompletedChallenges(completed);
+  }, [dailyChallenges]); // Run when dailyChallenges changes or component updates
+
+  const getRandomChallenges = (count) => {
+    const shuffled = challenges.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count).map((challenge) => challenge.id);
+  };
 
   // Helper function to get the localStorage key for each challenge
   const getChallengeKey = (id) => {
@@ -35,6 +61,16 @@ const Dashboard = () => {
         return "whackABananaCompleted";
       case 5:
         return "bananaCatcherCompleted";
+      case 6:
+        return "bananaBalanceCompleted";
+      case 7:
+        return "bananaSpellingBeeCompleted";
+      case 8:
+        return "bananaRhythmCompleted";
+      case 9:
+        return "bananaPeelingRaceCompleted";
+      case 10:
+        return "bananaSplitBuilderCompleted";
       default:
         return "";
     }
@@ -80,6 +116,43 @@ const Dashboard = () => {
       completed: false,
       completedAt: null,
     },
+    {
+      id: 6,
+      title: "Banana Balance",
+      description:
+        "Balance bananas on a monkey's head for as long as possible!",
+      completed: false,
+      completedAt: null,
+    },
+    {
+      id: 7,
+      title: "Banana Spelling Bee",
+      description: "Spell words using banana-shaped letter tiles!",
+      completed: false,
+      completedAt: null,
+    },
+    {
+      id: 8,
+      title: "Banana Rhythm",
+      description:
+        "Tap to the beat of the music with banana-themed visual cues!",
+      completed: false,
+      completedAt: null,
+    },
+    {
+      id: 9,
+      title: "Banana Peeling Race",
+      description: "Peel as many bananas as you can in 10 seconds!",
+      completed: false,
+      completedAt: null,
+    },
+    {
+      id: 10,
+      title: "Banana Split Builder",
+      description: "Build banana splits according to customer orders!",
+      completed: false,
+      completedAt: null,
+    },
   ];
 
   const handleChallengeSelect = (challengeId) => {
@@ -91,7 +164,7 @@ const Dashboard = () => {
       "Are you sure you want to reset all challenges? This action cannot be undone (You will lose all your bananas)."
     );
     if (confirm) {
-      const challengeIds = [1, 2, 3, 4, 5];
+      const challengeIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
       challengeIds.forEach((id) => {
         const challengeKey = getChallengeKey(id);
         localStorage.removeItem(challengeKey);
@@ -104,34 +177,33 @@ const Dashboard = () => {
     <div className="dashboard">
       <BananaCounter completedChallenges={completedChallenges} />
       <DateAndQuote />
-      {completedChallenges.length < 5 && <h1>Acquire Your Bananas</h1>}
-      {completedChallenges.length < 5 ? (
-        <p>Currently Completed: {completedChallenges.length}/5</p>
-      ) : (
-        <h2>
-          All challenges completed! Come back tomorrow to acquire more bananas!
-        </h2>
-      )}
+      <h1>Today's Banana Challenges</h1>
+      <p>Completed: {completedChallenges.length}/5</p>
       <div className="challenge-grid">
-        {challenges.map((challenge) => (
-          <div
-            key={challenge.id}
-            className={`challenge-card ${
-              completedChallenges.includes(challenge.id) ? "completed" : ""
-            }`}
-            onClick={() =>
-              handleChallengeSelect(
-                challenge.title.replaceAll(" ", "-").toLowerCase()
-              )
-            }
-          >
-            <h2 className="challenge-title">{challenge.title}</h2>
-            <p className="challenge-description">{challenge.description}</p>
-            {completedChallenges.includes(challenge.id) && (
-              <span className="completed-badge">✅ Banana Acquired 🍌 ✅</span>
-            )}
-          </div>
-        ))}
+        {dailyChallenges.map((challengeId) => {
+          const challenge = challenges.find((c) => c.id === challengeId);
+          return (
+            <div
+              key={challenge.id}
+              className={`challenge-card ${
+                completedChallenges.includes(challenge.id) ? "completed" : ""
+              }`}
+              onClick={() =>
+                handleChallengeSelect(
+                  challenge.title.replaceAll(" ", "-").toLowerCase()
+                )
+              }
+            >
+              <h2 className="challenge-title">{challenge.title}</h2>
+              <p className="challenge-description">{challenge.description}</p>
+              {completedChallenges.includes(challenge.id) && (
+                <span className="completed-badge">
+                  ✅ Banana Acquired 🍌 ✅
+                </span>
+              )}
+            </div>
+          );
+        })}
       </div>
       <button className="reset-button" onClick={resetChallenges}>
         Reset Challenges

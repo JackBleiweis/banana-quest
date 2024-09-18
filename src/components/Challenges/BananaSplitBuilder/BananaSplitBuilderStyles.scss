@@ -1,0 +1,181 @@
+.banana-split-builder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #1e1e1e, #2a2a2a);
+  color: #ffffff;
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+  }
+
+  .completion-message {
+    font-size: 1.2rem;
+    color: #39ff14;
+    margin-bottom: 20px;
+    text-align: center;
+    animation: pulseGlow 2s infinite;
+  }
+
+  .instructions {
+    text-align: center;
+    margin-bottom: 20px;
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+  }
+
+  .game-info {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: #39ff14;
+  }
+
+  .order-checker {
+    font-size: 1.2rem;
+    color: #39ff14;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+  }
+
+  .order-display,
+  .build-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+    min-height: 50px;
+    min-width: 50px;
+
+    &.correct {
+      background-color: #39ff14;
+      text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+    }
+
+    &.incorrect {
+      background-color: #ff1e1e;
+      text-shadow: 0 0 10px rgba(255, 20, 20, 0.5);
+    }
+  }
+
+  .ingredient-selector {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .ingredient {
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &.banana {
+      background-image: url("../../../assets/banana.png");
+    }
+    &.vanilla {
+      background-image: url("../../../assets/vanilla.png");
+    }
+    &.chocolate {
+      background-image: url("../../../assets/chocolate.png");
+    }
+    &.strawberry {
+      background-image: url("../../../assets/strawberry.png");
+    }
+    &.whipped_cream {
+      background-image: url("../../../assets/whipped-cream.png");
+    }
+    &.cherry {
+      background-image: url("../../../assets/cherry.png");
+    }
+  }
+
+  .start-button,
+  .go-back {
+    background-color: #39ff14;
+    color: #1e1e1e;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+
+    &:hover {
+      background-color: darken(#39ff14, 10%);
+      transform: scale(1.05);
+    }
+  }
+
+  .game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #39ff14;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #39ff14;
+
+    h3 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #39ff14;
+      color: #1e1e1e;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: darken(#39ff14, 10%);
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    text-shadow: 0 0 5px rgba(57, 255, 20, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(57, 255, 20, 0.8);
+  }
+}
