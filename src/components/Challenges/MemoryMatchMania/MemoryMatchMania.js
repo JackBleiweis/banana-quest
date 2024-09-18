@@ -99,6 +99,7 @@ const MemoryMatchMania = () => {
       {isCompleted && (
         <div className="completion-message">
           Congratulations! You've completed the challenge in {moves} moves!
+          <p style={{ margin: "10px 0 0 0" }}>Banana Acquired!</p>
         </div>
       )}
       <div className="card-grid">

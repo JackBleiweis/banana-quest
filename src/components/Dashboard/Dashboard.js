@@ -88,7 +88,7 @@ const Dashboard = () => {
 
   const resetChallenges = () => {
     let confirm = window.confirm(
-      "Are you sure you want to reset all challenges?"
+      "Are you sure you want to reset all challenges? This action cannot be undone (You will lose all your bananas)."
     );
     if (confirm) {
       const challengeIds = [1, 2, 3, 4, 5];

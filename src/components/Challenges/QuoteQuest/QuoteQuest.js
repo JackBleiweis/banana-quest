@@ -3,16 +3,16 @@ import { useNavigate } from "react-router-dom";
 import "./QuoteQuestStyles.scss";
 
 const quotes = [
-  "The quick brown fox jumps over the lazy dog, while the agile cat gracefully leaps onto the nearby fence, observing the scene with curiosity.",
-  "To be or not to be, that is the question: Whether 'tis nobler in the mind to suffer the slings and arrows of outrageous fortune, or to take arms against a sea of troubles.",
-  "All that glitters is not gold; often have you heard that told: Many a man his life hath sold but my outside to behold: Gilded tombs do worms enfold.",
-  "I think, therefore I am. But what am I? A thinking thing, a thing that doubts, understands, affirms, denies, wills, refuses, and that also imagines and senses.",
-  "Be the change you wish to see in the world. Your thoughts become your words, your words become your actions, your actions become your habits, your habits become your values, your values become your destiny.",
-  "Life is what happens when you're busy making other plans. Yesterday's the past, tomorrow's the future, but today is a gift. That's why it's called the present.",
-  "The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle. As with all matters of the heart, you'll know when you find it.",
-  "In three words I can sum up everything I've learned about life: it goes on. Don't cry because it's over, smile because it happened. Life is like riding a bicycle. To keep your balance, you must keep moving.",
-  "Imagination is more important than knowledge. For knowledge is limited, whereas imagination embraces the entire world, stimulating progress, giving birth to evolution.",
-  "The journey of a thousand miles begins with one step. The secret of getting ahead is getting started. The secret of getting started is breaking your complex overwhelming tasks into small manageable tasks, and starting on the first one.",
+  "The quick brown fox jumps over the lazy dog, while the agile cat leaps onto the fence.",
+  "To be or not to be, that is the question: Whether 'tis nobler to suffer the slings and arrows of fortune.",
+  "All that glitters is not gold; often have you heard that told: Many a man his life hath sold.",
+  "I think, therefore I am. But what am I? A thing that doubts, understands, affirms, denies, and wills.",
+  "Be the change you wish to see in the world. Your thoughts become your words, your words become your actions.",
+  "Life is what happens when you're busy making other plans. Yesterday's past, tomorrow's future, today's a gift.",
+  "The only way to do great work is to love what you do. If you haven't found it yet, keep looking.",
+  "In three words I can sum up everything I've learned about life: it goes on. Smile because it happened.",
+  "Imagination is more important than knowledge. Knowledge is limited, imagination embraces the entire world.",
+  "The journey of a thousand miles begins with one step. The secret of getting ahead is getting started.",
 ];
 
 const QuoteQuest = () => {
@@ -133,7 +133,9 @@ const QuoteQuest = () => {
               <div className="result">
                 Completed in {timer.toFixed(1)} seconds!
               </div>
-              <button onClick={handleGoBack}>Go Back to Dashboard</button>
+              <button className="button go-back" onClick={handleGoBack}>
+                Go Back to Dashboard
+              </button>
             </>
           )}
         </>

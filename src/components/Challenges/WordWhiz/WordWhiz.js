@@ -23,6 +23,7 @@ const WordWhiz = () => {
   const [guessStates, setGuessStates] = useState(Array(MAX_GUESSES).fill(null));
   const [isCompleted, setIsCompleted] = useState(false);
 
+  console.log(targetWord);
   useEffect(() => {
     setTargetWord(
       WORDS[Math.floor(Math.random() * WORDS.length)].toUpperCase()
@@ -34,7 +35,6 @@ const WordWhiz = () => {
 
   const handleKeyPress = (key) => {
     if (gameOver) return;
-
     // Add the 'pressed' class to the clicked key
     const keyElement = document.querySelector(`button[data-key="${key}"]`);
     if (keyElement) {
@@ -43,7 +43,11 @@ const WordWhiz = () => {
     }
 
     if (key === "Enter" && currentGuess.length === WORD_LENGTH) {
-      submitGuess();
+      if (WORDS.includes(currentGuess.toLowerCase())) {
+        submitGuess();
+      } else {
+        setMessage(`${currentGuess} is not a valid word`);
+      }
     } else if (key === "Backspace") {
       setCurrentGuess((prev) => prev.slice(0, -1));
     } else if (currentGuess.length < WORD_LENGTH && key.match(/^[A-Z]$/)) {
@@ -176,10 +180,10 @@ const WordWhiz = () => {
       <h1>Word Whiz</h1>
       {isCompleted && (
         <div className="completion-message">
-          Congratulations! You've completed the challenge in x moves!!
+          {`Congratulations! You've completed the challenge in ${guessCount} moves!!`}
+          <p style={{ margin: "10px 0 0 0" }}>Banana Acquired!</p>
         </div>
       )}
-      <h2>{targetWord}</h2>
       <div className="game-board">
         {guesses.map((guess, index) => (
           <div key={index} className="guess-row">
@@ -192,10 +196,9 @@ const WordWhiz = () => {
       <div className="message">{message}</div>
       <div className="virtual-keyboard">{renderKeyboard()}</div>
       {gameOver && (
-        <div className="game-over-buttons">
-          <button onClick={handleGoBack}>Back to Dashboard</button>
-          <button onClick={handleReset}>Play Again</button>
-        </div>
+        <button className="button play-again" onClick={handleReset}>
+          Play Again
+        </button>
       )}
     </div>
   );

@@ -54,7 +54,6 @@
 
   .message {
     font-size: 1.2rem;
-    margin-bottom: 20px;
     text-align: center;
   }
 
@@ -85,6 +84,13 @@
         right: 50px;
         margin-top: 0;
       }
+    }
+
+    &.play-again {
+      position: absolute;
+      top: 90px;
+      right: 50px;
+      margin-top: 20px;
     }
 
     &:hover {

@@ -12,7 +12,6 @@ const WhackABanana = () => {
   const [gameOver, setGameOver] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
-  const [highScore, setHighScore] = useState(0);
 
   useEffect(() => {
     const today = new Date();
@@ -29,12 +28,6 @@ const WhackABanana = () => {
     // Check if the challenge is already completed
     const completed = localStorage.getItem("whackABananaCompleted") === "true";
     setIsCompleted(completed);
-
-    // Get the high score from local storage
-    const storedHighScore = localStorage.getItem("whackABananaHighScore");
-    if (storedHighScore) {
-      setHighScore(parseInt(storedHighScore, 10));
-    }
   }, []);
 
   useEffect(() => {
@@ -48,10 +41,6 @@ const WhackABanana = () => {
 
   const endGame = () => {
     setGameOver(true);
-    if (score > highScore) {
-      setHighScore(score);
-      localStorage.setItem("whackABananaHighScore", score.toString());
-    }
     if (!isCompleted && score >= 20) {
       setIsCompleted(true);
       localStorage.setItem("whackABananaCompleted", "true");
@@ -125,7 +114,7 @@ const WhackABanana = () => {
   };
 
   const handleGoBack = () => {
-    navigate("/dashboard");
+    navigate("/");
   };
 
   const renderItem = (item, index) => {
@@ -151,8 +140,10 @@ const WhackABanana = () => {
       <h2>Whack-a-Banana</h2>
       {isCompleted && (
         <div className="completion-message">
-          Congratulations! You've completed the challenge with a high score of{" "}
-          {highScore}!
+          <h1>
+            Congratulations! You've completed the challenge and acquired your
+            banana!
+          </h1>
         </div>
       )}
       {!gameStarted && (
@@ -173,7 +164,6 @@ const WhackABanana = () => {
           <div className="game-info">
             <p>Score: {score}</p>
             <p>Time Left: {timeLeft}s</p>
-            <p>High Score: {highScore}</p>
           </div>
           <div
             className="item-grid"
@@ -192,7 +182,6 @@ const WhackABanana = () => {
         <div className="game-over">
           <h3>Game Over!</h3>
           <p>Final Score: {score}</p>
-          <p>High Score: {highScore}</p>
           <button onClick={startGame}>Play Again</button>
         </div>
       )}
